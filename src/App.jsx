@@ -67,7 +67,10 @@ export default function SurveyDataTable() {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch("https://api.qmapi.com/acuadmin");
+        const apiUrl = import.meta.env.DEV
+          ? "/api/acuadmin"
+          : "https://api.qmapi.com/acuadmin";
+        const response = await fetch(apiUrl);
         if (!response.ok) {
           throw new Error(`API request failed with status ${response.status}`);
         }
